@@ -15,6 +15,8 @@ const bgMusic = document.getElementById("bgMusic");
 // Nota: en celular, el audio con sonido necesita una interacción del usuario.
 let musicStarted = false;
 
+const music = new Audio("./assets/bby_romeo.mp3");
+
 const noTexts = [
   "No",
   "¿segura?",
