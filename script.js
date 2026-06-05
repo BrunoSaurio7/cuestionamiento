@@ -11,11 +11,9 @@ const enterButton = document.getElementById("enterButton");
 const musicButton = document.getElementById("musicButton");
 const bgMusic = document.getElementById("bgMusic");
 
-// Cambia este archivo por tu canción. Debe estar en: assets/cancion.mp3
-// Nota: en celular, el audio con sonido necesita una interacción del usuario.
+// La canción debe estar exactamente en:
+// assets/bby_romeo.mp3
 let musicStarted = false;
-
-const music = new Audio("./assets/bby_romeo.mp3");
 
 const noTexts = [
   "No",
@@ -42,20 +40,23 @@ const hints = [
 
 let attempts = 0;
 
-function startMusic(){
+function startMusic() {
   if (!bgMusic || musicStarted) return;
+
   bgMusic.volume = 0.72;
+
   bgMusic.play()
     .then(() => {
       musicStarted = true;
       musicButton.textContent = "⏸ pausar";
     })
-    .catch(() => {
+    .catch((error) => {
+      console.log("No se pudo reproducir la música:", error);
       musicButton.textContent = "▶ reproducir";
     });
 }
 
-function toggleMusic(){
+function toggleMusic() {
   if (!bgMusic) return;
 
   if (bgMusic.paused) {
@@ -67,11 +68,11 @@ function toggleMusic(){
   }
 }
 
-function randomBetween(min, max){
+function randomBetween(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-function moveNoButton(){
+function moveNoButton() {
   attempts++;
 
   noBtn.classList.add("is-running", "panic");
@@ -111,43 +112,50 @@ function moveNoButton(){
   }
 }
 
-function showYesResult(){
+function showYesResult() {
   resultModal.classList.add("show");
   resultModal.setAttribute("aria-hidden", "false");
   createConfettiBurst();
 }
 
-function createFloatingHeart(){
+function createFloatingHeart() {
   const heart = document.createElement("span");
+
   heart.className = "heart";
   heart.textContent = ["💖", "💘", "💕", "💗", "✨"][Math.floor(Math.random() * 5)];
   heart.style.left = `${Math.random() * 100}%`;
   heart.style.animationDuration = `${randomBetween(5, 9)}s`;
   heart.style.fontSize = `${randomBetween(16, 30)}px`;
+
   floatingHearts.appendChild(heart);
 
   setTimeout(() => heart.remove(), 9500);
 }
 
-function createConfettiBurst(){
+function createConfettiBurst() {
   for (let i = 0; i < 42; i++) {
     const piece = document.createElement("span");
+
     piece.className = "burst";
     piece.textContent = ["💖", "✨", "😭", "💕", "💌"][Math.floor(Math.random() * 5)];
     piece.style.left = "50%";
     piece.style.top = "50%";
     piece.style.setProperty("--x", `${randomBetween(-46, 46)}vw`);
     piece.style.setProperty("--y", `${randomBetween(-42, 42)}vh`);
+
     document.body.appendChild(piece);
+
     setTimeout(() => piece.remove(), 950);
   }
 }
 
 noBtn.addEventListener("pointerenter", moveNoButton);
+
 noBtn.addEventListener("pointerdown", (event) => {
   event.preventDefault();
   moveNoButton();
 });
+
 noBtn.addEventListener("click", (event) => {
   event.preventDefault();
   moveNoButton();
@@ -158,7 +166,7 @@ buttonStage.addEventListener("touchstart", (event) => {
     event.preventDefault();
     moveNoButton();
   }
-}, { passive:false });
+}, { passive: false });
 
 yesBtn.addEventListener("click", showYesResult);
 
