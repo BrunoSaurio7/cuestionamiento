@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>¿Quieres ser mi novia?</title>
+  <meta name="theme-color" content="#4b0711" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <audio id="bgMusic" src="./assets/cancion.mp3" loop preload="auto"></audio>
+
+  <div class="enter-overlay" id="enterOverlay">
+    <div class="enter-card">
+      <span class="mini-label">mensaje importante</span>
+      <h2>toca para entrar 💌</h2>
+      <p>prometo que es algo muy serio, sofisticado y nada dramático</p>
+      <button id="enterButton">entrar</button>
+    </div>
+  </div>
+
+  <div class="noise" aria-hidden="true"></div>
+  <div class="floating-hearts" aria-hidden="true" id="floatingHearts"></div>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">pregunta oficial</div>
+        <h1>¿Quieres ser <span>mi novia?</span></h1>
+        <p class="lead">
+          Antes de responder, considera que esta página fue construida con mucho cariño, demasiados nervios y una cantidad poco sana de esperanza. 
+        </p>
+      </div>
+
+      <section class="proposal-card" aria-label="Opciones de respuesta">
+        <p class="card-kicker">elige sabiamente</p>
+        <h2 id="questionText">Zur, ¿aceptas andar conmigo? 🙂‍↔️</h2>
+
+        <div class="button-stage" id="buttonStage">
+          <button class="yes-btn" id="yesBtn">Sí 💖</button>
+          <button class="no-btn" id="noBtn">No</button>
+        </div>
+
+        <p class="hint" id="hintText">el botón de “No” está en periodo de reflexión</p>
+      </section>
+    </section>
+
+    <section class="reasons">
+      <div class="section-title">
+        <span>evidencia presentada</span>
+        <h2>razones jurídicas, científicas y emocionales para decir que sí</h2>
+      </div>
+
+      <div class="reason-grid">
+        <article>
+          <strong>01</strong>
+          <h3>me encantas</h3>
+          <p>Porque me gustas de una forma que se siente bonita, tranquila y muy tuya.</p>
+        </article>
+        <article>
+          <strong>02</strong>
+          <h3>contigo todo se siente fácil</h3>
+          <p>Hasta el silencio se siente cómodo, como si no hubiera que forzar nada.</p>
+        </article>
+        <article>
+          <strong>03</strong>
+          <h3>quiero seguir conociéndote</h3>
+          <p>Tu música, tus ideas, tus gustos raros, tus historias y todo lo que todavía no sé de ti.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="music-card" id="musica">
+      <div>
+        <span class="music-label">musiquita</span>
+        <h2>si no sonó la canción, toca aquí</h2>
+        <p>En celular los navegadores suelen bloquear el autoplay con sonido, por eso puse una entrada con tap para intentar reproducirla apenas abras la página.</p>
+      </div>
+      <button class="music-button" id="musicButton">▶ reproducir</button>
+    </section>
+  </main>
+
+  <div class="result-modal" id="resultModal" aria-hidden="true">
+    <div class="result-card">
+      <p class="mini-label">respuesta registrada</p>
+      <h2>sabía que dirías que sí 😭💖</h2>
+      <p>Oficialmente procedo a darte besitos, abrazarte mucho y presumir que tengo novia.</p>
+      <button id="closeModal">acepto los besitos</button>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
