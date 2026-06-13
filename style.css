@@ -3,13 +3,11 @@
   --wine-2: #4b0711;
   --wine-3: #7b1221;
   --red: #b91f35;
-  --red-soft: rgba(185, 31, 53, .42);
   --gold: #d7a64a;
   --cream: #fff0df;
   --ink: #fff0df;
   --line: rgba(255, 240, 223, .22);
   --soft: rgba(255, 240, 223, .08);
-  --shadow: rgba(0, 0, 0, .24);
 }
 
 * {
@@ -26,10 +24,9 @@ body {
   font-family: "Inter", system-ui, sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at 18% 8%, rgba(215, 166, 74, .24), transparent 32%),
-    radial-gradient(circle at 88% 22%, rgba(185, 31, 53, .42), transparent 34%),
-    radial-gradient(circle at 45% 90%, rgba(255, 130, 110, .16), transparent 35%),
-    linear-gradient(180deg, #4b0711 0%, #7b1221 46%, #31050b 100%);
+    radial-gradient(circle at 18% 8%, rgba(215, 166, 74, .20), transparent 30%),
+    radial-gradient(circle at 88% 22%, rgba(185, 31, 53, .34), transparent 32%),
+    linear-gradient(180deg, #4b0711 0%, #7b1221 48%, #31050b 100%);
   overflow-x: hidden;
 }
 
@@ -50,19 +47,16 @@ audio {
   display: none;
 }
 
-/* Capa de textura */
-
 .noise {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: .24;
+  opacity: .18;
   background-image:
-    linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
-  background-size: 34px 34px;
-  mask-image: linear-gradient(to bottom, black, transparent 90%);
+    linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
 /* Fotos flotantes de fondo */
@@ -77,15 +71,15 @@ audio {
 
 .float-photo {
   position: absolute;
-  width: clamp(86px, 18vw, 190px);
-  max-height: 240px;
+  width: clamp(72px, 14vw, 170px);
+  max-height: 210px;
   object-fit: contain;
-  border: 1px solid rgba(255, 240, 223, .22);
-  border-radius: 18px;
-  opacity: .11;
-  filter: saturate(1.05) contrast(1.05);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, .18);
-  animation: floatPhoto 12s ease-in-out infinite alternate;
+  border: 1px solid rgba(255, 240, 223, .20);
+  border-radius: 16px;
+  opacity: .10;
+  filter: saturate(1.02) contrast(1.02);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, .14);
+  animation: floatPhoto 13s ease-in-out infinite alternate;
 }
 
 .float-photo-1 {
@@ -95,14 +89,14 @@ audio {
 }
 
 .float-photo-2 {
-  top: 16%;
+  top: 18%;
   right: 5%;
   transform: rotate(8deg);
   animation-delay: -3s;
 }
 
 .float-photo-3 {
-  bottom: 12%;
+  bottom: 13%;
   left: 6%;
   transform: rotate(7deg);
   animation-delay: -6s;
@@ -121,7 +115,7 @@ audio {
   }
 
   to {
-    translate: 0 -24px;
+    translate: 0 -18px;
   }
 }
 
@@ -135,10 +129,10 @@ audio {
   place-items: center;
   padding: 22px;
   background:
-    radial-gradient(circle at 20% 20%, rgba(215, 166, 74, .22), transparent 34%),
-    radial-gradient(circle at 80% 80%, rgba(185, 31, 53, .38), transparent 34%),
+    radial-gradient(circle at 20% 20%, rgba(215, 166, 74, .20), transparent 34%),
+    radial-gradient(circle at 80% 80%, rgba(185, 31, 53, .34), transparent 34%),
     rgba(37, 3, 8, .94);
-  transition: opacity .45s ease, visibility .45s ease;
+  transition: opacity .36s ease, visibility .36s ease;
 }
 
 .enter-overlay.hide {
@@ -154,8 +148,7 @@ audio {
   padding: 34px 28px;
   text-align: center;
   background: rgba(255, 240, 223, .08);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, .3);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .28);
 }
 
 .enter-card h2 {
@@ -179,12 +172,6 @@ audio {
   color: var(--wine);
   background: var(--gold);
   font-weight: 800;
-  transition: transform .2s ease, filter .2s ease;
-}
-
-.enter-card button:hover {
-  transform: scale(1.04);
-  filter: brightness(1.05);
 }
 
 /* Layout principal */
@@ -192,23 +179,32 @@ audio {
 .page {
   position: relative;
   z-index: 2;
-  width: min(1120px, calc(100% - 32px));
+  width: min(1040px, calc(100% - 32px));
   margin: 0 auto;
 }
 
 .hero {
   min-height: 100svh;
   display: grid;
-  grid-template-columns: 1fr .92fr;
-  gap: 34px;
   align-items: center;
-  padding: 42px 0 36px;
+  padding: 34px 0 42px;
 }
 
-.hero-copy {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: 42px 0;
+.proposal-card {
+  position: relative;
+  width: min(860px, 100%);
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 34px;
+  padding: clamp(22px, 5vw, 46px);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(215, 166, 74, .16), transparent 42%),
+    linear-gradient(180deg, rgba(255, 240, 223, .12), rgba(255, 240, 223, .055));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .18);
+}
+
+.proposal-copy {
+  text-align: center;
 }
 
 .eyebrow,
@@ -217,7 +213,7 @@ audio {
 .mini-label,
 .section-title span {
   display: inline-block;
-  font-size: .78rem;
+  font-size: .76rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: .18em;
@@ -225,9 +221,10 @@ audio {
 }
 
 h1 {
-  margin: 14px 0 22px;
+  max-width: 780px;
+  margin: 16px auto 20px;
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(4rem, 9vw, 8rem);
+  font-size: clamp(4rem, 10vw, 8.2rem);
   line-height: .84;
   font-weight: 600;
   letter-spacing: -.055em;
@@ -241,30 +238,22 @@ h1 span {
 }
 
 .lead {
-  max-width: 680px;
-  margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.95;
+  max-width: 650px;
+  margin: 0 auto 28px;
+  font-size: 1.02rem;
+  line-height: 1.85;
   color: rgba(255, 240, 223, .82);
 }
 
-/* Tarjeta de propuesta */
-
-.proposal-card {
-  position: relative;
-  border: 1px solid var(--line);
-  border-radius: 32px;
-  padding: 28px;
-  background:
-    linear-gradient(180deg, rgba(255, 240, 223, .12), rgba(255, 240, 223, .055));
-  box-shadow: 0 24px 80px rgba(0, 0, 0, .2);
-  backdrop-filter: blur(10px);
+.card-kicker {
+  margin-bottom: 12px;
 }
 
 .proposal-card h2 {
-  margin: 12px 0 18px;
+  max-width: 650px;
+  margin: 0 auto 20px;
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2.3rem, 5vw, 4.1rem);
+  font-size: clamp(2.1rem, 5vw, 3.8rem);
   line-height: .95;
   font-weight: 600;
   letter-spacing: -.035em;
@@ -279,8 +268,8 @@ h1 span {
   border: 1px solid rgba(255, 240, 223, .16);
   border-radius: 26px;
   background:
-    radial-gradient(circle at 50% 42%, rgba(215, 166, 74, .18), transparent 34%),
-    rgba(37, 3, 8, .26);
+    radial-gradient(circle at 50% 42%, rgba(215, 166, 74, .16), transparent 34%),
+    rgba(37, 3, 8, .24);
 }
 
 .yes-btn,
@@ -289,7 +278,7 @@ h1 span {
   border-radius: 999px;
   padding: 14px 23px;
   font-weight: 900;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, .22);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .20);
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -307,10 +296,6 @@ h1 span {
   transition: transform .22s ease, filter .2s ease;
 }
 
-.yes-btn:hover {
-  filter: brightness(1.06);
-}
-
 .no-btn {
   position: absolute;
   right: 18px;
@@ -321,41 +306,42 @@ h1 span {
   background: rgba(185, 31, 53, .72);
   transform-origin: center;
   transition:
-    left .24s ease,
-    top .24s ease,
-    right .24s ease,
-    bottom .24s ease,
-    opacity .24s ease,
-    transform .18s ease;
+    left .22s ease,
+    top .22s ease,
+    right .22s ease,
+    bottom .22s ease,
+    opacity .22s ease,
+    transform .16s ease;
 }
 
 .hint {
   min-height: 28px;
   margin: 18px 0 0;
+  text-align: center;
   color: rgba(255, 240, 223, .72);
   line-height: 1.6;
 }
 
-/* Actitud juguetona del botón No */
+/* Animaciones del botón No */
 
 .no-btn.jump {
-  animation: noJump .46s ease;
+  animation: noJump .42s ease;
 }
 
 .no-btn.spin {
-  animation: noSpin .48s ease;
+  animation: noSpin .46s ease;
 }
 
 .no-btn.shake {
-  animation: noShake .38s ease;
+  animation: noShake .34s ease;
 }
 
 .no-btn.sassy {
-  animation: noSassy .48s ease;
+  animation: noSassy .44s ease;
 }
 
 .no-btn.zoom {
-  animation: noZoom .38s ease;
+  animation: noZoom .34s ease;
 }
 
 @keyframes noJump {
@@ -364,7 +350,7 @@ h1 span {
   }
 
   50% {
-    translate: 0 -18px;
+    translate: 0 -16px;
   }
 }
 
@@ -384,15 +370,15 @@ h1 span {
   }
 
   25% {
-    translate: -8px 0;
+    translate: -7px 0;
   }
 
   50% {
-    translate: 8px 0;
+    translate: 7px 0;
   }
 
   75% {
-    translate: -5px 0;
+    translate: -4px 0;
   }
 }
 
@@ -402,11 +388,11 @@ h1 span {
   }
 
   40% {
-    scale: 1.12 .88;
+    scale: 1.10 .90;
   }
 
   70% {
-    scale: .92 1.08;
+    scale: .94 1.06;
   }
 }
 
@@ -416,14 +402,16 @@ h1 span {
   }
 
   50% {
-    scale: 1.16;
+    scale: 1.13;
   }
 }
 
-/* Sección evidencia en cascada */
+/* Evidencia en cascada */
 
 .reasons {
-  padding: 34px 0 78px;
+  padding: 28px 0 72px;
+  content-visibility: auto;
+  contain-intrinsic-size: 1200px;
 }
 
 .section-title {
@@ -444,8 +432,6 @@ h1 span {
   color: var(--cream);
 }
 
-/* Esta parte cambia la galería de collage a cascada */
-
 .media-grid {
   display: flex;
   flex-direction: column;
@@ -465,9 +451,9 @@ h1 span {
   border-radius: 24px;
   padding: 12px;
   background:
-    radial-gradient(circle at 50% 0%, rgba(215, 166, 74, .12), transparent 40%),
-    rgba(255, 240, 223, .07);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, .20);
+    radial-gradient(circle at 50% 0%, rgba(215, 166, 74, .10), transparent 40%),
+    rgba(255, 240, 223, .065);
+  box-shadow: 0 22px 64px rgba(0, 0, 0, .18);
 }
 
 .media-item img,
@@ -481,8 +467,6 @@ h1 span {
   border-radius: 18px;
   background: rgba(37, 3, 8, .28);
 }
-
-/* Tamaños alternados para que se sienta más orgánico, pero siempre centrado */
 
 .media-item:nth-child(1),
 .media-item:nth-child(6) {
@@ -511,6 +495,8 @@ h1 span {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: rgba(255, 240, 223, .045);
+  content-visibility: auto;
+  contain-intrinsic-size: 380px;
 }
 
 .music-card h2 {
@@ -544,16 +530,9 @@ h1 span {
   font-weight: 900;
   text-decoration: none;
   text-align: center;
-  transition: transform .2s ease, filter .2s ease;
 }
 
-.music-button:hover,
-.spotify-link:hover {
-  transform: scale(1.04);
-  filter: brightness(1.06);
-}
-
-/* Modal de respuesta */
+/* Modal */
 
 .result-modal {
   position: fixed;
@@ -562,8 +541,7 @@ h1 span {
   display: grid;
   place-items: center;
   padding: 22px;
-  background: rgba(37, 3, 8, .74);
-  backdrop-filter: blur(14px);
+  background: rgba(37, 3, 8, .76);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -586,12 +564,6 @@ h1 span {
     radial-gradient(circle at 20% 10%, rgba(215, 166, 74, .18), transparent 35%),
     linear-gradient(180deg, #6d101d, #33060c);
   box-shadow: 0 28px 90px rgba(0, 0, 0, .34);
-  transform: translateY(18px) scale(.97);
-  transition: transform .28s ease;
-}
-
-.result-modal.show .result-card {
-  transform: translateY(0) scale(1);
 }
 
 .result-card h2 {
@@ -617,7 +589,7 @@ h1 span {
   font-weight: 900;
 }
 
-/* Confetti del botón Sí */
+/* Confetti */
 
 .burst {
   position: fixed;
@@ -642,18 +614,17 @@ h1 span {
 /* Responsive */
 
 @media (max-width: 900px) {
+  .page {
+    width: min(100% - 24px, 1040px);
+  }
+
   .hero {
-    grid-template-columns: 1fr;
     min-height: auto;
     padding-top: 28px;
   }
 
-  .hero-copy {
-    padding: 30px 0;
-  }
-
   .proposal-card {
-    padding: 22px;
+    border-radius: 28px;
   }
 
   .music-card {
@@ -667,17 +638,36 @@ h1 span {
 }
 
 @media (max-width: 760px) {
+  body {
+    background:
+      radial-gradient(circle at 20% 4%, rgba(215, 166, 74, .16), transparent 28%),
+      linear-gradient(180deg, #4b0711 0%, #7b1221 52%, #31050b 100%);
+  }
+
   .page {
-    width: min(100% - 22px, 1120px);
+    width: min(100% - 20px, 1040px);
+  }
+
+  .hero {
+    padding: 20px 0 34px;
+  }
+
+  .proposal-card {
+    padding: 20px;
   }
 
   h1 {
-    font-size: clamp(4.2rem, 19vw, 6.8rem);
+    font-size: clamp(4rem, 18vw, 6.6rem);
   }
 
   .lead {
-    font-size: 1rem;
-    line-height: 1.85;
+    font-size: .98rem;
+    line-height: 1.76;
+    margin-bottom: 24px;
+  }
+
+  .proposal-card h2 {
+    font-size: clamp(2rem, 9vw, 3.3rem);
   }
 
   .button-stage {
@@ -720,28 +710,31 @@ h1 span {
   }
 
   .float-photo {
-    width: clamp(74px, 28vw, 130px);
-    opacity: .09;
+    width: clamp(66px, 25vw, 118px);
+    opacity: .075;
+    animation-duration: 16s;
   }
 
   .float-photo-1 {
-    top: 9%;
-    left: -2%;
+    top: 10%;
+    left: -4%;
   }
 
   .float-photo-2 {
-    top: 24%;
-    right: -4%;
+    top: 28%;
+    right: -5%;
   }
 
   .float-photo-3 {
-    bottom: 18%;
-    left: -3%;
+    display: none;
   }
 
   .float-photo-4 {
-    bottom: 5%;
-    right: -4%;
+    display: none;
+  }
+
+  .noise {
+    opacity: .10;
   }
 }
 
@@ -763,6 +756,16 @@ h1 span {
 
   .music-card {
     padding: 24px 0;
+  }
+}
+
+@media (hover: hover) {
+  .enter-card button:hover,
+  .yes-btn:hover,
+  .music-button:hover,
+  .spotify-link:hover {
+    transform: scale(1.04);
+    filter: brightness(1.06);
   }
 }
 
