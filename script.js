@@ -5,40 +5,43 @@ const hintText = document.getElementById("hintText");
 const questionText = document.getElementById("questionText");
 const resultModal = document.getElementById("resultModal");
 const closeModal = document.getElementById("closeModal");
-const floatingHearts = document.getElementById("floatingHearts");
 const enterOverlay = document.getElementById("enterOverlay");
 const enterButton = document.getElementById("enterButton");
-const musicButton = document.getElementById("musicButton");
 const bgMusic = document.getElementById("bgMusic");
 
-// La canción debe estar exactamente en:
-// assets/bby_romeo.mp3
 let musicStarted = false;
+let attempts = 0;
 
 const noTexts = [
   "No",
-  "¿segura?",
-  "piénsalo bien",
-  "no sirve 😭",
-  "botón en huelga",
-  "error 404",
-  "casi le picas",
-  "mejor el sí",
-  "ya ni modo"
+  "jiji no",
+  "fallaste",
+  "ni cerca",
+  "me escapé",
+  "no insistas",
+  "botón rebelde",
+  "me fui",
+  "bye"
 ];
 
 const hints = [
-  "el botón de “No” está en periodo de reflexión",
-  "uy, se asustó",
-  "creo que no quiere cooperar",
-  "está corriendo por su vida",
-  "cada intento hace más poderoso al Sí",
-  "el No acaba de renunciar",
-  "última oportunidad para aceptar lo obvio",
+  "el botón de “No” solo funciona bajo sus propios términos",
+  "uy, casi lo atrapas",
+  "se movió con elegancia sospechosa",
+  "cada intento fortalece al Sí",
+  "el No está haciendo parkour emocional",
+  "el No acaba de pedir vacaciones",
+  "esto ya parece trámite perdido",
   "dictamen final: solo queda el Sí"
 ];
 
-let attempts = 0;
+const playfulActions = [
+  "jump",
+  "spin",
+  "shake",
+  "sassy",
+  "zoom"
+];
 
 function startMusic() {
   if (!bgMusic || musicStarted) return;
@@ -48,48 +51,99 @@ function startMusic() {
   bgMusic.play()
     .then(() => {
       musicStarted = true;
-      musicButton.textContent = "⏸ pausar";
     })
     .catch((error) => {
       console.log("No se pudo reproducir la música:", error);
-      musicButton.textContent = "▶ reproducir";
     });
-}
-
-function toggleMusic() {
-  if (!bgMusic) return;
-
-  if (bgMusic.paused) {
-    startMusic();
-  } else {
-    bgMusic.pause();
-    musicButton.textContent = "▶ reproducir";
-    musicStarted = false;
-  }
 }
 
 function randomBetween(min, max) {
   return Math.random() * (max - min) + min;
 }
 
+function rectsOverlap(rectA, rectB, buffer = 18) {
+  return !(
+    rectA.right + buffer < rectB.left ||
+    rectA.left - buffer > rectB.right ||
+    rectA.bottom + buffer < rectB.top ||
+    rectA.top - buffer > rectB.bottom
+  );
+}
+
+function getLocalRect(element, parentRect) {
+  const rect = element.getBoundingClientRect();
+
+  return {
+    left: rect.left - parentRect.left,
+    top: rect.top - parentRect.top,
+    right: rect.right - parentRect.left,
+    bottom: rect.bottom - parentRect.top,
+    width: rect.width,
+    height: rect.height
+  };
+}
+
+function getSafeNoPosition() {
+  const stageRect = buttonStage.getBoundingClientRect();
+  const noRect = noBtn.getBoundingClientRect();
+  const yesRect = getLocalRect(yesBtn, stageRect);
+
+  const padding = 14;
+  const maxX = Math.max(padding, stageRect.width - noRect.width - padding);
+  const maxY = Math.max(padding, stageRect.height - noRect.height - padding);
+
+  let fallback = {
+    x: padding,
+    y: stageRect.height - noRect.height - padding
+  };
+
+  for (let i = 0; i < 80; i++) {
+    const x = randomBetween(padding, maxX);
+    const y = randomBetween(padding, maxY);
+
+    const candidateRect = {
+      left: x,
+      top: y,
+      right: x + noRect.width,
+      bottom: y + noRect.height
+    };
+
+    if (!rectsOverlap(candidateRect, yesRect, 28)) {
+      return { x, y };
+    }
+  }
+
+  return fallback;
+}
+
+function playNoAnimation() {
+  playfulActions.forEach(action => noBtn.classList.remove(action));
+
+  const action = playfulActions[Math.floor(Math.random() * playfulActions.length)];
+
+  void noBtn.offsetWidth;
+
+  noBtn.classList.add(action);
+
+  setTimeout(() => {
+    noBtn.classList.remove(action);
+  }, 520);
+}
+
 function moveNoButton() {
   attempts++;
 
-  noBtn.classList.add("is-running", "panic");
+  noBtn.classList.add("is-running");
 
-  const stageRect = buttonStage.getBoundingClientRect();
-  const btnRect = noBtn.getBoundingClientRect();
+  const { x, y } = getSafeNoPosition();
 
-  const padding = 12;
-  const maxX = Math.max(padding, stageRect.width - btnRect.width - padding);
-  const maxY = Math.max(padding, stageRect.height - btnRect.height - padding);
-
-  const x = randomBetween(padding, maxX);
-  const y = randomBetween(padding, maxY);
-
+  noBtn.style.right = "auto";
+  noBtn.style.bottom = "auto";
   noBtn.style.left = `${x}px`;
   noBtn.style.top = `${y}px`;
-  noBtn.style.transform = `rotate(${randomBetween(-14, 14)}deg)`;
+  noBtn.style.transform = `rotate(${randomBetween(-12, 12)}deg)`;
+
+  playNoAnimation();
 
   const textIndex = Math.min(attempts, noTexts.length - 1);
   const hintIndex = Math.min(attempts, hints.length - 1);
@@ -97,18 +151,18 @@ function moveNoButton() {
   noBtn.textContent = noTexts[textIndex];
   hintText.textContent = hints[hintIndex];
 
-  const yesScale = Math.min(1 + attempts * 0.11, 1.85);
-  yesBtn.style.transform = `scale(${yesScale})`;
+  const yesScale = Math.min(1 + attempts * 0.10, 1.7);
+  yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
 
   if (attempts >= 4) {
     questionText.textContent = "Zur, el universo está inclinándose hacia el sí 😌";
   }
 
-  if (attempts >= 7) {
+  if (attempts >= 8) {
     noBtn.style.opacity = "0";
     noBtn.style.pointerEvents = "none";
     hintText.textContent = "el No se fue. solo queda hacer lo correcto 🙂‍↔️";
-    yesBtn.style.transform = "scale(1.9)";
+    yesBtn.style.transform = "translate(-50%, -50%) scale(1.85)";
   }
 }
 
@@ -116,20 +170,6 @@ function showYesResult() {
   resultModal.classList.add("show");
   resultModal.setAttribute("aria-hidden", "false");
   createConfettiBurst();
-}
-
-function createFloatingHeart() {
-  const heart = document.createElement("span");
-
-  heart.className = "heart";
-  heart.textContent = ["💖", "💘", "💕", "💗", "✨"][Math.floor(Math.random() * 5)];
-  heart.style.left = `${Math.random() * 100}%`;
-  heart.style.animationDuration = `${randomBetween(5, 9)}s`;
-  heart.style.fontSize = `${randomBetween(16, 30)}px`;
-
-  floatingHearts.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 9500);
 }
 
 function createConfettiBurst() {
@@ -149,24 +189,17 @@ function createConfettiBurst() {
   }
 }
 
-noBtn.addEventListener("pointerenter", moveNoButton);
-
-noBtn.addEventListener("pointerdown", (event) => {
-  event.preventDefault();
-  moveNoButton();
-});
-
 noBtn.addEventListener("click", (event) => {
   event.preventDefault();
   moveNoButton();
 });
 
-buttonStage.addEventListener("touchstart", (event) => {
-  if (event.target === noBtn) {
+noBtn.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
     event.preventDefault();
     moveNoButton();
   }
-}, { passive: false });
+});
 
 yesBtn.addEventListener("click", showYesResult);
 
@@ -181,10 +214,6 @@ enterButton.addEventListener("click", () => {
   startMusic();
 });
 
-musicButton.addEventListener("click", toggleMusic);
-
 window.addEventListener("load", () => {
   document.body.classList.add("locked");
 });
-
-setInterval(createFloatingHeart, 950);
