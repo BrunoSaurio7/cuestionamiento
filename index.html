@@ -8,13 +8,16 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-  <audio id="bgMusic" src="./assets/bby_romeo.mp3" loop preload="auto"></audio>
+  <audio id="bgMusic" src="./assets/bby_romeo.mp3" loop preload="none"></audio>
 
   <div class="enter-overlay" id="enterOverlay">
     <div class="enter-card">
@@ -28,29 +31,29 @@
   <div class="noise" aria-hidden="true"></div>
 
   <div class="floating-photos" aria-hidden="true">
-    <img class="float-photo float-photo-1" src="./assets/foto1.jpg" alt="">
-    <img class="float-photo float-photo-2" src="./assets/foto2.jpg" alt="">
-    <img class="float-photo float-photo-3" src="./assets/foto3.jpg" alt="">
-    <img class="float-photo float-photo-4" src="./assets/foto4.jpg" alt="">
+    <img class="float-photo float-photo-1" src="./assets/foto1.jpg" alt="" decoding="async">
+    <img class="float-photo float-photo-2" src="./assets/foto2.jpg" alt="" decoding="async">
+    <img class="float-photo float-photo-3" src="./assets/foto3.jpg" alt="" decoding="async">
+    <img class="float-photo float-photo-4" src="./assets/foto4.jpg" alt="" decoding="async">
   </div>
 
   <main class="page">
     <section class="hero">
-      <div class="hero-copy">
-        <div class="eyebrow">pregunta oficial</div>
+      <section class="proposal-card" aria-label="Pregunta principal">
+        <div class="proposal-copy">
+          <div class="eyebrow">pregunta oficial</div>
 
-        <h1>¿Quieres ser <span>mi novia?</span></h1>
+          <h1>¿Quieres ser <span>mi novia?</span></h1>
 
-        <p class="lead">
-          Antes de responder, considera que esta página fue construida con mucho cariño,
-          demasiados nervios y una cantidad poco sana de esperanza.
-        </p>
-      </div>
+          <p class="lead">
+            Antes de responder, considera que esta página fue construida con mucho cariño,
+            demasiados nervios y una cantidad poco sana de esperanza.
+          </p>
 
-      <section class="proposal-card" aria-label="Opciones de respuesta">
-        <p class="card-kicker">elige sabiamente</p>
+          <p class="card-kicker">elige sabiamente</p>
 
-        <h2 id="questionText">Zur, ¿aceptas andar conmigo? 🙂‍↔️</h2>
+          <h2 id="questionText">Zur, ¿aceptas andar conmigo? 🙂‍↔️</h2>
+        </div>
 
         <div class="button-stage" id="buttonStage">
           <button class="yes-btn" id="yesBtn">Sí 💖</button>
@@ -69,27 +72,41 @@
 
       <div class="media-grid">
         <article class="media-item">
-          <video src="./assets/video1.MP4" autoplay loop muted playsinline preload="metadata"></video>
+          <video
+            class="evidence-video"
+            src="./assets/video1.mp4"
+            loop
+            muted
+            playsinline
+            preload="none"
+          ></video>
         </article>
 
         <article class="media-item">
-          <img src="./assets/foto1.jpg" alt="Evidencia 1">
+          <img src="./assets/foto1.jpg" alt="Evidencia 1" loading="lazy" decoding="async">
         </article>
 
         <article class="media-item">
-          <img src="./assets/foto2.jpg" alt="Evidencia 2">
+          <img src="./assets/foto2.jpg" alt="Evidencia 2" loading="lazy" decoding="async">
         </article>
 
         <article class="media-item">
-          <img src="./assets/foto3.jpg" alt="Evidencia 3">
+          <img src="./assets/foto3.jpg" alt="Evidencia 3" loading="lazy" decoding="async">
         </article>
 
         <article class="media-item">
-          <img src="./assets/foto4.jpg" alt="Evidencia 4">
+          <img src="./assets/foto4.jpg" alt="Evidencia 4" loading="lazy" decoding="async">
         </article>
 
         <article class="media-item">
-          <video src="./assets/video2.MP4" autoplay loop muted playsinline preload="metadata"></video>
+          <video
+            class="evidence-video"
+            src="./assets/video2.mp4"
+            loop
+            muted
+            playsinline
+            preload="none"
+          ></video>
         </article>
       </div>
     </section>
@@ -106,7 +123,7 @@
 
       <a
         class="music-button spotify-link"
-        href="https://open.spotify.com/playlist/61zBJhNNJY0XC0HNsT8I18?si=adbae8725a85473e"
+        href="https://open.spotify.com/playlist/TU_ID_DE_PLAYLIST"
         target="_blank"
         rel="noopener noreferrer"
       >
