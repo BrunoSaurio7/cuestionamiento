@@ -46,7 +46,7 @@ const playfulActions = [
 function startMusic() {
   if (!bgMusic || musicStarted) return;
 
-  bgMusic.volume = 0.72;
+  bgMusic.volume = 0.68;
 
   bgMusic.play()
     .then(() => {
@@ -92,12 +92,14 @@ function getSafeNoPosition() {
   const maxX = Math.max(padding, stageRect.width - noRect.width - padding);
   const maxY = Math.max(padding, stageRect.height - noRect.height - padding);
 
-  let fallback = {
-    x: padding,
-    y: stageRect.height - noRect.height - padding
-  };
+  const fallbackPositions = [
+    { x: padding, y: padding },
+    { x: maxX, y: padding },
+    { x: padding, y: maxY },
+    { x: maxX, y: maxY }
+  ];
 
-  for (let i = 0; i < 80; i++) {
+  for (let i = 0; i < 90; i++) {
     const x = randomBetween(padding, maxX);
     const y = randomBetween(padding, maxY);
 
@@ -108,12 +110,12 @@ function getSafeNoPosition() {
       bottom: y + noRect.height
     };
 
-    if (!rectsOverlap(candidateRect, yesRect, 28)) {
+    if (!rectsOverlap(candidateRect, yesRect, 32)) {
       return { x, y };
     }
   }
 
-  return fallback;
+  return fallbackPositions[attempts % fallbackPositions.length];
 }
 
 function playNoAnimation() {
@@ -151,7 +153,7 @@ function moveNoButton() {
   noBtn.textContent = noTexts[textIndex];
   hintText.textContent = hints[hintIndex];
 
-  const yesScale = Math.min(1 + attempts * 0.10, 1.7);
+  const yesScale = Math.min(1 + attempts * 0.09, 1.62);
   yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
 
   if (attempts >= 4) {
@@ -162,7 +164,7 @@ function moveNoButton() {
     noBtn.style.opacity = "0";
     noBtn.style.pointerEvents = "none";
     hintText.textContent = "el No se fue. solo queda hacer lo correcto 🙂‍↔️";
-    yesBtn.style.transform = "translate(-50%, -50%) scale(1.85)";
+    yesBtn.style.transform = "translate(-50%, -50%) scale(1.72)";
   }
 }
 
@@ -173,7 +175,9 @@ function showYesResult() {
 }
 
 function createConfettiBurst() {
-  for (let i = 0; i < 42; i++) {
+  const amount = window.innerWidth < 520 ? 24 : 42;
+
+  for (let i = 0; i < amount; i++) {
     const piece = document.createElement("span");
 
     piece.className = "burst";
@@ -187,6 +191,35 @@ function createConfettiBurst() {
 
     setTimeout(() => piece.remove(), 950);
   }
+}
+
+function setupVideoOptimization() {
+  const videos = document.querySelectorAll(".evidence-video");
+
+  if (!("IntersectionObserver" in window)) {
+    videos.forEach(video => {
+      video.play().catch(() => {});
+    });
+    return;
+  }
+
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, {
+    threshold: 0.35
+  });
+
+  videos.forEach(video => {
+    videoObserver.observe(video);
+  });
 }
 
 noBtn.addEventListener("click", (event) => {
@@ -216,4 +249,5 @@ enterButton.addEventListener("click", () => {
 
 window.addEventListener("load", () => {
   document.body.classList.add("locked");
+  setupVideoOptimization();
 });
