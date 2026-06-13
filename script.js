@@ -31,7 +31,7 @@ const hints = [
   "chance debas probar con el otro...",
   "segura le diste al que querías? mmmh",
   "wow el que hizo la página no sabe qpdo",
-  "que mal hecha la página, np funcionan los botones...",
+  "que mal hecha la página, no funcionan los botones...",
   "hola ya dale al sí andale"
 ];
 
