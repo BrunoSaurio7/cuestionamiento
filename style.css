@@ -8,8 +8,9 @@
   --ink: #fff0df;
   --line: rgba(255, 240, 223, .22);
   --soft: rgba(255, 240, 223, .08);
-  --main-font: "Arial Narrow", Arial, Helvetica, var(--main-font);
-  --title-font: "Arial Narrow", Arial, Helvetica, var(--main-font);
+
+  --main-font: "Arial Narrow", Arial, Helvetica, sans-serif;
+  --title-font: "Arial Narrow", Arial, Helvetica, sans-serif;
 }
 
 * {
@@ -133,7 +134,7 @@ audio {
   background:
     radial-gradient(circle at 20% 20%, rgba(215, 166, 74, .20), transparent 34%),
     radial-gradient(circle at 80% 80%, rgba(185, 31, 53, .34), transparent 34%),
-    rgba(37, 3, 8, .94);
+    #250308;
   transition: opacity .36s ease, visibility .36s ease;
 }
 
@@ -763,10 +764,13 @@ h1 span {
 
 @media (hover: hover) {
   .enter-card button:hover,
-  .yes-btn:hover,
   .music-button:hover,
   .spotify-link:hover {
     transform: scale(1.04);
+    filter: brightness(1.06);
+  }
+
+  .yes-btn:hover {
     filter: brightness(1.06);
   }
 }
