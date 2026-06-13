@@ -26,7 +26,13 @@
   </div>
 
   <div class="noise" aria-hidden="true"></div>
-  <div class="floating-hearts" aria-hidden="true" id="floatingHearts"></div>
+
+  <div class="floating-photos" aria-hidden="true">
+    <img class="float-photo float-photo-1" src="./assets/foto1.jpg" alt="">
+    <img class="float-photo float-photo-2" src="./assets/foto2.jpg" alt="">
+    <img class="float-photo float-photo-3" src="./assets/foto3.jpg" alt="">
+    <img class="float-photo float-photo-4" src="./assets/foto4.jpg" alt="">
+  </div>
 
   <main class="page">
     <section class="hero">
@@ -51,33 +57,39 @@
           <button class="no-btn" id="noBtn">No</button>
         </div>
 
-        <p class="hint" id="hintText">el botón de “No” está en periodo de reflexión</p>
+        <p class="hint" id="hintText">el botón de “No” solo funciona bajo sus propios términos</p>
       </section>
     </section>
 
     <section class="reasons">
       <div class="section-title">
         <span>evidencia presentada</span>
-        <h2>razones jurídicas, científicas y emocionales para decir que sí</h2>
+        <h2>material probatorio para sustentar que deberías decir que sí</h2>
       </div>
 
-      <div class="reason-grid">
-        <article>
-          <strong>01</strong>
-          <h3>me encantas</h3>
-          <p>Porque me gustas de una forma que se siente bonita, tranquila y muy tuya.</p>
+      <div class="media-grid">
+        <article class="media-item">
+          <video src="./assets/video1.mp4" autoplay loop muted playsinline preload="metadata"></video>
         </article>
 
-        <article>
-          <strong>02</strong>
-          <h3>contigo todo se siente fácil</h3>
-          <p>Hasta el silencio se siente cómodo, como si no hubiera que forzar nada.</p>
+        <article class="media-item">
+          <img src="./assets/foto1.jpg" alt="Evidencia 1">
         </article>
 
-        <article>
-          <strong>03</strong>
-          <h3>quiero seguir conociéndote</h3>
-          <p>Tu música, tus ideas, tus gustos raros, tus historias y todo lo que todavía no sé de ti.</p>
+        <article class="media-item">
+          <img src="./assets/foto2.jpg" alt="Evidencia 2">
+        </article>
+
+        <article class="media-item">
+          <img src="./assets/foto3.jpg" alt="Evidencia 3">
+        </article>
+
+        <article class="media-item">
+          <img src="./assets/foto4.jpg" alt="Evidencia 4">
+        </article>
+
+        <article class="media-item">
+          <video src="./assets/video2.mp4" autoplay loop muted playsinline preload="metadata"></video>
         </article>
       </div>
     </section>
@@ -85,14 +97,21 @@
     <section class="music-card" id="musica">
       <div>
         <span class="music-label">musiquita</span>
-        <h2>si no sonó la canción, toca aquí</h2>
+        <h2>playlist oficial de este caso</h2>
         <p>
-          En celular los navegadores suelen bloquear el autoplay con sonido,
-          por eso puse una entrada con tap para reproducirla apenas abras la página.
+          Por si la página no era suficientemente cursi, aquí está la playlist
+          para acompañar este momento tan serio, legal y emocionalmente vinculante.
         </p>
       </div>
 
-      <button class="music-button" id="musicButton">▶ reproducir</button>
+      <a
+        class="music-button spotify-link"
+        href="https://open.spotify.com/playlist/61zBJhNNJY0XC0HNsT8I18?si=adbae8725a85473e"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        abrir playlist en Spotify
+      </a>
     </section>
   </main>
 
