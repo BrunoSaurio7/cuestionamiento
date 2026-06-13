@@ -13,26 +13,26 @@ let musicStarted = false;
 let attempts = 0;
 
 const noTexts = [
-  "No",
-  "jiji no",
-  "fallaste",
-  "ni cerca",
-  "me escapé",
-  "no insistas",
-  "botón rebelde",
-  "me fui",
+  "nop",
+  "upsiiiii",
+  "OMG q pasó",
+  "nopeee",
+  "no funca",
+  "nopiii",
+  "🙂‍↔️🙂‍↔️🙂‍↔️",
+  "nonono",
   "bye"
 ];
 
 const hints = [
-  "el botón de “No” solo funciona bajo sus propios términos",
-  "uy, casi lo atrapas",
-  "se movió con elegancia sospechosa",
-  "cada intento fortalece al Sí",
-  "el No está haciendo parkour emocional",
-  "el No acaba de pedir vacaciones",
-  "esto ya parece trámite perdido",
-  "dictamen final: solo queda el Sí"
+  "OMG que pasó con el botón?",
+  "casi le das eh",
+  "wtf pq no funciona?",
+  "chance debas probar con el otro...",
+  "segura le diste al que querías? mmmh",
+  "wow el que hizo la página no sabe qpdo",
+  "que mal hecha la página, np funcionan los botones...",
+  "hola ya dale al sí andale"
 ];
 
 const playfulActions = [
@@ -157,13 +157,13 @@ function moveNoButton() {
   yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
 
   if (attempts >= 4) {
-    questionText.textContent = "Zur, el universo está inclinándose hacia el sí 😌";
+    questionText.textContent = "di que siii di que siiiii 🙂‍↔️";
   }
 
   if (attempts >= 8) {
     noBtn.style.opacity = "0";
     noBtn.style.pointerEvents = "none";
-    hintText.textContent = "el No se fue. solo queda hacer lo correcto 🙂‍↔️";
+    hintText.textContent = "ya solo hay una opción...";
     yesBtn.style.transform = "translate(-50%, -50%) scale(1.72)";
   }
 }
@@ -181,7 +181,7 @@ function createConfettiBurst() {
     const piece = document.createElement("span");
 
     piece.className = "burst";
-    piece.textContent = ["💖", "✨", "😭", "💕", "💌"][Math.floor(Math.random() * 5)];
+    piece.textContent = "✨", "✨", "✨", "✨", "✨"][Math.floor(Math.random() * 5)];
     piece.style.left = "50%";
     piece.style.top = "50%";
     piece.style.setProperty("--x", `${randomBetween(-46, 46)}vw`);
