@@ -181,7 +181,7 @@ function createConfettiBurst() {
     const piece = document.createElement("span");
 
     piece.className = "burst";
-    piece.textContent = "✨", "✨", "✨", "✨", "✨"][Math.floor(Math.random() * 5)];
+    piece.textContent = "✨";
     piece.style.left = "50%";
     piece.style.top = "50%";
     piece.style.setProperty("--x", `${randomBetween(-46, 46)}vw`);
